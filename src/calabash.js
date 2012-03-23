@@ -18,29 +18,57 @@
         /*DOCUMENT_NODE                  : */ 9 : 'DOCUMENT_NODE'
     };
 
+    function computeRectForNode(object)
+    {
+        var res = {}, boundingBox;
+        if (isHostMethod(object,'getBoundingClientRect'))
+        {
+           boundingBox = object.getBoundingClientRect();
+           res['rect'] = boundingBox;
+           res['rect'].center_x = boundingBox.left + Math.floor(boundingBox.width/2);
+           res['rect'].center_y = boundingBox.top + Math.floor(boundingBox.height/2);
+        }
+        res.nodeType = NODE_TYPES[object.nodeType] || res.nodeType + ' (Unexpected)';
+        res.nodeName = object.nodeName;
+        res.id = object.id || '';
+        res['class'] = object.className || '';
+        if (object.href)
+        {
+            res.href = object.href;
+        }
+        res.html = object.outerHTML || '';
+        res.textContent = object.textContent;
+        return res;
+    }
     function toJSON(object)
     {
-        var res, i, N;
+        var res, i, N, spanEl, parentEl;
         if (typeof object==='undefined')
         {
             throw {message:'Calling toJSON with undefined'};
         }
+        else if (object instanceof Text)
+        {
+            parentEl = object.parentElement;
+            if (parentEl)
+            {
+                spanEl = document.createElement("calabash");
+                spanEl.style.display = "inline";
+                spanEl.innerHTML = object.textContent;
+                parentEl.replaceChild(spanEl, object);
+                res = computeRectForNode(spanEl);
+                parentEl.replaceChild(object,spanEl);
+            }
+            else
+            {
+                res = object;
+            }
+
+
+        }
         else if (object instanceof Node)//TODO: support for frames!
         {
-            res = {}
-            if (isHostMethod(object,'getBoundingClientRect'))
-            {
-               boundingBox = object.getBoundingClientRect();
-               res['rect'] = boundingBox;
-               res['rect'].center_x = boundingBox.left + Math.floor(boundingBox.width/2);
-               res['rect'].center_y = boundingBox.top + Math.floor(boundingBox.height/2);
-            }
-            res.nodeType = NODE_TYPES[object.nodeType] || res.nodeType + ' (Unexpected)';
-            res.nodeName = object.nodeName;
-            res.id = object.id || '';
-            res['class'] = object.className || '';
-            res.html = object.outerHTML || '';
-            res.textContent = object.textContent;
+            res = computeRectForNode(object);
         }
         else if (object instanceof NodeList || //TODO: support for frames!
                  (typeof object=='object' && object &&
