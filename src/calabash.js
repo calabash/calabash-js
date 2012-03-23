@@ -57,6 +57,11 @@
                 spanEl.innerHTML = object.textContent;
                 parentEl.replaceChild(spanEl, object);
                 res = computeRectForNode(spanEl);
+                res.nodeType = NODE_TYPES[object.nodeType];
+                delete res.nodeName;
+                delete res.id;
+                delete res['class'];
+
                 parentEl.replaceChild(object,spanEl);
             }
             else
