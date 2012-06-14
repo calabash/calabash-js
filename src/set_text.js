@@ -17,6 +17,7 @@
 
 	 
 	function enterTextIntoInputField(elem, text) {
+      elem.value = "";
 	    for (var i = 0; i < text.length; i++) {
 	        var ch = text.charAt(i);
 	        elem.value += ch;
