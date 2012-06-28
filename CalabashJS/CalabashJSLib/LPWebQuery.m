@@ -25,6 +25,11 @@
         case LPWebQueryTypeXPATH:
             jsString = [NSString stringWithFormat:LP_QUERY_JS,query,@"xpath"];            
             break;
+        case LPWebQueryTypeFreeText:
+            jsString = [NSString stringWithFormat:LP_QUERY_JS, 
+                        [NSString stringWithFormat:@"//node()[contains(text(),\\\"%@\\\")]", query], 
+                        @"xpath"];
+            break;
         default:
             NSLog(@"Unknown Query type");
             return nil;

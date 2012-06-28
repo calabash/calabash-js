@@ -13,7 +13,8 @@ static NSString *LP_QUERY_JS = @"(function(){function isHostMethod(object,proper
 typedef enum LPWebQueryType 
 {
     LPWebQueryTypeCSS,
-    LPWebQueryTypeXPATH
+    LPWebQueryTypeXPATH,
+    LPWebQueryTypeFreeText
     
 } LPWebQueryType;
 
