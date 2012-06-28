@@ -36,6 +36,10 @@
         {
             res.href = object.href;
         }
+        if (res.nodeName.toLowerCase() === 'input')
+        {
+            res.value = object.value || '';
+        }
         res.html = object.outerHTML || '';
         res.textContent = object.textContent;
         return res;
