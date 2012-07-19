@@ -63,8 +63,8 @@
         CGPoint screenCenter = CGPointMake(webViewPoint.x + center.x, webViewPoint.y + center.y);            
         if (!CGPointEqualToPoint(CGPointZero, center) && [webView pointInside:center withEvent:nil])
         {
-            NSDictionary *centerDict = (NSDictionary*)CGPointCreateDictionaryRepresentation(screenCenter);
-            [dres setValue:[centerDict autorelease] forKey:@"center"];
+            NSDictionary *centerDict = (__bridge_transfer NSDictionary*)CGPointCreateDictionaryRepresentation(screenCenter);
+            [dres setValue:centerDict forKey:@"center"];
             [dres setValue:webView forKey:@"webView"];
             [result addObject:dres];                
             if (DEBUG)
