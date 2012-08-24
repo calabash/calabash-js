@@ -115,6 +115,9 @@
         	i,N;
  
         el=document.elementFromPoint(exp.rect.left, exp.rect.top);
+        if(exp.id){
+            el = document.getElementById(exp.id)
+        }
         if (/input/i.test(el.tagName))
         {
         	selectInputField(el);
