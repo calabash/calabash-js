@@ -8,6 +8,8 @@
 
 #import "LPWebQuery.h"
 #import "LPJSONUtils.h"
+#import "LPTouchUtils.h"
+
 @implementation LPWebQuery
 
 
@@ -48,7 +50,10 @@
     }
     NSArray *queryResult = [LPJSONUtils deserializeArray:output]; 
     
-    CGPoint webViewPoint = [webView convertPoint:webView.bounds.origin toView:[UIApplication sharedApplication].keyWindow.rootViewController.view];
+//    CGPoint webViewPoint = [webView convertPoint:webView.bounds.origin toView:[UIApplication sharedApplication].keyWindow.rootViewController.view];
+    UIWindow *window = [LPTouchUtils windowForView:webView];
+    CGPoint webViewPoint = [window convertPoint:webView.bounds.origin fromView:webView];
+//    CGPoint webViewPoint = [webView.window convertPoint:webView.frame.origin  ]
        
     for (NSDictionary *d in queryResult) 
     {
