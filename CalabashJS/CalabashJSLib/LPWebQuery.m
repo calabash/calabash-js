@@ -66,10 +66,11 @@
         CGPoint center = CGPointMake(left+width/2.0, top+height/2.0);
         CGPoint windowCenter = [window convertPoint:center fromView:webView];
         CGPoint keyCenter = [frontWindow convertPoint:windowCenter fromWindow:window];
+        CGPoint finalCenter = [LPTouchUtils translateToScreenCoords:keyCenter];
 
         if (!CGPointEqualToPoint(CGPointZero, center) && [webView pointInside:center withEvent:nil])
         {
-            NSDictionary *centerDict = (__bridge_transfer NSDictionary*)CGPointCreateDictionaryRepresentation(keyCenter);
+            NSDictionary *centerDict = (__bridge_transfer NSDictionary*)CGPointCreateDictionaryRepresentation(finalCenter);
             [dres setValue:centerDict forKey:@"center"];
             [dres setValue:webView forKey:@"webView"];
             [result addObject:dres];                
