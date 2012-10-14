@@ -7,33 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B1678F78159B374C003E653F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1678F77159B374C003E653F /* UIKit.framework */; };
-		B1678F7A159B374C003E653F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1678F79159B374C003E653F /* Foundation.framework */; };
-		B1678F7C159B374C003E653F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1678F7B159B374C003E653F /* CoreGraphics.framework */; };
-		B1678F82159B374C003E653F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B1678F80159B374C003E653F /* InfoPlist.strings */; };
-		B1678F84159B374C003E653F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B1678F83159B374C003E653F /* main.m */; };
-		B1678F88159B374C003E653F /* LPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B1678F87159B374C003E653F /* LPAppDelegate.m */; };
-		B1678F8B159B374C003E653F /* LPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1678F8A159B374C003E653F /* LPViewController.m */; };
-		B1678F8E159B374C003E653F /* LPViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1678F8C159B374C003E653F /* LPViewController.xib */; };
-		B1678F96159B374C003E653F /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1678F95159B374C003E653F /* SenTestingKit.framework */; };
-		B1678F97159B374C003E653F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1678F77159B374C003E653F /* UIKit.framework */; };
-		B1678F98159B374C003E653F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1678F79159B374C003E653F /* Foundation.framework */; };
-		B1678FA0159B374C003E653F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B1678F9E159B374C003E653F /* InfoPlist.strings */; };
-		B1678FA3159B374C003E653F /* CalabashJSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B1678FA2159B374C003E653F /* CalabashJSTests.m */; };
 		B1678FB0159B37AE003E653F /* LPWebQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = B1678FAF159B37AE003E653F /* LPWebQuery.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B1678FB1159B37AE003E653F /* LPWebQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = B1678FAF159B37AE003E653F /* LPWebQuery.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		B1678FC3159B38E4003E653F /* CDataScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B1678FB7159B38E4003E653F /* CDataScanner_Extensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		B1678FC4159B38E4003E653F /* CDataScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B1678FB7159B38E4003E653F /* CDataScanner_Extensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		B1678FC5159B38E4003E653F /* LPCJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = B1678FB9159B38E4003E653F /* LPCJSONDeserializer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		B1678FC6159B38E4003E653F /* LPCJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = B1678FB9159B38E4003E653F /* LPCJSONDeserializer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		B1678FC7159B38E4003E653F /* LPCJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = B1678FBB159B38E4003E653F /* LPCJSONScanner.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		B1678FC8159B38E4003E653F /* LPCJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = B1678FBB159B38E4003E653F /* LPCJSONScanner.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		B1678FC9159B38E4003E653F /* LPCJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = B1678FBD159B38E4003E653F /* LPCJSONSerializer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		B1678FCA159B38E4003E653F /* LPCJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = B1678FBD159B38E4003E653F /* LPCJSONSerializer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		B1678FCB159B38E4003E653F /* LPCDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = B1678FC0159B38E4003E653F /* LPCDataScanner.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		B1678FCC159B38E4003E653F /* LPCDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = B1678FC0159B38E4003E653F /* LPCDataScanner.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		B1678FCD159B38E4003E653F /* LPJSONUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = B1678FC2159B38E4003E653F /* LPJSONUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		B1678FCE159B38E4003E653F /* LPJSONUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = B1678FC2159B38E4003E653F /* LPJSONUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,40 +22,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B1678F73159B374C003E653F /* CalabashJS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalabashJS.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B1678F77159B374C003E653F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		B1678F79159B374C003E653F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		B1678F7B159B374C003E653F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		B1678F7F159B374C003E653F /* CalabashJS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CalabashJS-Info.plist"; sourceTree = "<group>"; };
-		B1678F81159B374C003E653F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B1678F83159B374C003E653F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		B1678F85159B374C003E653F /* CalabashJS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CalabashJS-Prefix.pch"; sourceTree = "<group>"; };
-		B1678F86159B374C003E653F /* LPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPAppDelegate.h; sourceTree = "<group>"; };
-		B1678F87159B374C003E653F /* LPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPAppDelegate.m; sourceTree = "<group>"; };
-		B1678F89159B374C003E653F /* LPViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPViewController.h; sourceTree = "<group>"; };
-		B1678F8A159B374C003E653F /* LPViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPViewController.m; sourceTree = "<group>"; };
-		B1678F8D159B374C003E653F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LPViewController.xib; sourceTree = "<group>"; };
-		B1678F94159B374C003E653F /* CalabashJSTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CalabashJSTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B1678F95159B374C003E653F /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		B1678F9D159B374C003E653F /* CalabashJSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CalabashJSTests-Info.plist"; sourceTree = "<group>"; };
-		B1678F9F159B374C003E653F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B1678FA1159B374C003E653F /* CalabashJSTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalabashJSTests.h; sourceTree = "<group>"; };
-		B1678FA2159B374C003E653F /* CalabashJSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalabashJSTests.m; sourceTree = "<group>"; };
+		B1678F73159B374C003E653F /* CalabashJS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = CalabashJS.app; path = "/Users/krukow/github/calabash-ios-server/calabash-js/CalabashJS/build/Release-iphoneos/CalabashJS.app"; sourceTree = "<absolute>"; };
+		B1678F94159B374C003E653F /* CalabashJSTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = CalabashJSTests.octest; path = "/Users/krukow/github/calabash-ios-server/calabash-js/CalabashJS/build/Release-iphoneos/CalabashJSTests.octest"; sourceTree = "<absolute>"; };
 		B1678FAE159B37AE003E653F /* LPWebQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPWebQuery.h; sourceTree = "<group>"; };
 		B1678FAF159B37AE003E653F /* LPWebQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPWebQuery.m; sourceTree = "<group>"; };
-		B1678FB6159B38E4003E653F /* CDataScanner_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner_Extensions.h; sourceTree = "<group>"; };
-		B1678FB7159B38E4003E653F /* CDataScanner_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDataScanner_Extensions.m; sourceTree = "<group>"; };
-		B1678FB8159B38E4003E653F /* LPCJSONDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCJSONDeserializer.h; sourceTree = "<group>"; };
-		B1678FB9159B38E4003E653F /* LPCJSONDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCJSONDeserializer.m; sourceTree = "<group>"; };
-		B1678FBA159B38E4003E653F /* LPCJSONScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCJSONScanner.h; sourceTree = "<group>"; };
-		B1678FBB159B38E4003E653F /* LPCJSONScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCJSONScanner.m; sourceTree = "<group>"; };
-		B1678FBC159B38E4003E653F /* LPCJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCJSONSerializer.h; sourceTree = "<group>"; };
-		B1678FBD159B38E4003E653F /* LPCJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCJSONSerializer.m; sourceTree = "<group>"; };
-		B1678FBE159B38E4003E653F /* LPJSONRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPJSONRepresentation.h; sourceTree = "<group>"; };
-		B1678FBF159B38E4003E653F /* LPCDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCDataScanner.h; sourceTree = "<group>"; };
-		B1678FC0159B38E4003E653F /* LPCDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCDataScanner.m; sourceTree = "<group>"; };
-		B1678FC1159B38E4003E653F /* LPJSONUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPJSONUtils.h; sourceTree = "<group>"; };
-		B1678FC2159B38E4003E653F /* LPJSONUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPJSONUtils.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,9 +33,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1678F78159B374C003E653F /* UIKit.framework in Frameworks */,
-				B1678F7A159B374C003E653F /* Foundation.framework in Frameworks */,
-				B1678F7C159B374C003E653F /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,9 +40,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1678F96159B374C003E653F /* SenTestingKit.framework in Frameworks */,
-				B1678F97159B374C003E653F /* UIKit.framework in Frameworks */,
-				B1678F98159B374C003E653F /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,77 +49,8 @@
 		B1678F68159B374C003E653F = {
 			isa = PBXGroup;
 			children = (
-				B1678FB2159B384F003E653F /* External */,
 				B1678FAD159B3781003E653F /* CalabashJSLib */,
-				B1678F7D159B374C003E653F /* CalabashJSApp */,
-				B1678F9B159B374C003E653F /* CalabashJSTests */,
-				B1678F76159B374C003E653F /* Frameworks */,
-				B1678F74159B374C003E653F /* Products */,
 			);
-			sourceTree = "<group>";
-		};
-		B1678F74159B374C003E653F /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				B1678F73159B374C003E653F /* CalabashJS.app */,
-				B1678F94159B374C003E653F /* CalabashJSTests.octest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		B1678F76159B374C003E653F /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				B1678F77159B374C003E653F /* UIKit.framework */,
-				B1678F79159B374C003E653F /* Foundation.framework */,
-				B1678F7B159B374C003E653F /* CoreGraphics.framework */,
-				B1678F95159B374C003E653F /* SenTestingKit.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		B1678F7D159B374C003E653F /* CalabashJSApp */ = {
-			isa = PBXGroup;
-			children = (
-				B1678F86159B374C003E653F /* LPAppDelegate.h */,
-				B1678F87159B374C003E653F /* LPAppDelegate.m */,
-				B1678F89159B374C003E653F /* LPViewController.h */,
-				B1678F8A159B374C003E653F /* LPViewController.m */,
-				B1678F8C159B374C003E653F /* LPViewController.xib */,
-				B1678F7E159B374C003E653F /* Supporting Files */,
-			);
-			name = CalabashJSApp;
-			path = CalabashJS;
-			sourceTree = "<group>";
-		};
-		B1678F7E159B374C003E653F /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				B1678F7F159B374C003E653F /* CalabashJS-Info.plist */,
-				B1678F80159B374C003E653F /* InfoPlist.strings */,
-				B1678F83159B374C003E653F /* main.m */,
-				B1678F85159B374C003E653F /* CalabashJS-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		B1678F9B159B374C003E653F /* CalabashJSTests */ = {
-			isa = PBXGroup;
-			children = (
-				B1678FA1159B374C003E653F /* CalabashJSTests.h */,
-				B1678FA2159B374C003E653F /* CalabashJSTests.m */,
-				B1678F9C159B374C003E653F /* Supporting Files */,
-			);
-			path = CalabashJSTests;
-			sourceTree = "<group>";
-		};
-		B1678F9C159B374C003E653F /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				B1678F9D159B374C003E653F /* CalabashJSTests-Info.plist */,
-				B1678F9E159B374C003E653F /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		B1678FAD159B3781003E653F /* CalabashJSLib */ = {
@@ -190,42 +60,6 @@
 				B1678FAF159B37AE003E653F /* LPWebQuery.m */,
 			);
 			path = CalabashJSLib;
-			sourceTree = "<group>";
-		};
-		B1678FB2159B384F003E653F /* External */ = {
-			isa = PBXGroup;
-			children = (
-				B1678FB4159B38E4003E653F /* JSON */,
-			);
-			path = External;
-			sourceTree = "<group>";
-		};
-		B1678FB4159B38E4003E653F /* JSON */ = {
-			isa = PBXGroup;
-			children = (
-				B1678FB5159B38E4003E653F /* JSON */,
-				B1678FBF159B38E4003E653F /* LPCDataScanner.h */,
-				B1678FC0159B38E4003E653F /* LPCDataScanner.m */,
-				B1678FC1159B38E4003E653F /* LPJSONUtils.h */,
-				B1678FC2159B38E4003E653F /* LPJSONUtils.m */,
-			);
-			path = JSON;
-			sourceTree = "<group>";
-		};
-		B1678FB5159B38E4003E653F /* JSON */ = {
-			isa = PBXGroup;
-			children = (
-				B1678FB6159B38E4003E653F /* CDataScanner_Extensions.h */,
-				B1678FB7159B38E4003E653F /* CDataScanner_Extensions.m */,
-				B1678FB8159B38E4003E653F /* LPCJSONDeserializer.h */,
-				B1678FB9159B38E4003E653F /* LPCJSONDeserializer.m */,
-				B1678FBA159B38E4003E653F /* LPCJSONScanner.h */,
-				B1678FBB159B38E4003E653F /* LPCJSONScanner.m */,
-				B1678FBC159B38E4003E653F /* LPCJSONSerializer.h */,
-				B1678FBD159B38E4003E653F /* LPCJSONSerializer.m */,
-				B1678FBE159B38E4003E653F /* LPJSONRepresentation.h */,
-			);
-			path = JSON;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,7 +119,7 @@
 				en,
 			);
 			mainGroup = B1678F68159B374C003E653F;
-			productRefGroup = B1678F74159B374C003E653F /* Products */;
+			productRefGroup = B1678F68159B374C003E653F;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -300,8 +134,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1678F82159B374C003E653F /* InfoPlist.strings in Resources */,
-				B1678F8E159B374C003E653F /* LPViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,7 +141,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1678FA0159B374C003E653F /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,16 +167,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1678F84159B374C003E653F /* main.m in Sources */,
-				B1678F88159B374C003E653F /* LPAppDelegate.m in Sources */,
-				B1678F8B159B374C003E653F /* LPViewController.m in Sources */,
 				B1678FB0159B37AE003E653F /* LPWebQuery.m in Sources */,
-				B1678FC3159B38E4003E653F /* CDataScanner_Extensions.m in Sources */,
-				B1678FC5159B38E4003E653F /* LPCJSONDeserializer.m in Sources */,
-				B1678FC7159B38E4003E653F /* LPCJSONScanner.m in Sources */,
-				B1678FC9159B38E4003E653F /* LPCJSONSerializer.m in Sources */,
-				B1678FCB159B38E4003E653F /* LPCDataScanner.m in Sources */,
-				B1678FCD159B38E4003E653F /* LPJSONUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,14 +175,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1678FA3159B374C003E653F /* CalabashJSTests.m in Sources */,
 				B1678FB1159B37AE003E653F /* LPWebQuery.m in Sources */,
-				B1678FC4159B38E4003E653F /* CDataScanner_Extensions.m in Sources */,
-				B1678FC6159B38E4003E653F /* LPCJSONDeserializer.m in Sources */,
-				B1678FC8159B38E4003E653F /* LPCJSONScanner.m in Sources */,
-				B1678FCA159B38E4003E653F /* LPCJSONSerializer.m in Sources */,
-				B1678FCC159B38E4003E653F /* LPCDataScanner.m in Sources */,
-				B1678FCE159B38E4003E653F /* LPJSONUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,33 +188,6 @@
 			targetProxy = B1678F99159B374C003E653F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		B1678F80159B374C003E653F /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B1678F81159B374C003E653F /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		B1678F8C159B374C003E653F /* LPViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B1678F8D159B374C003E653F /* en */,
-			);
-			name = LPViewController.xib;
-			sourceTree = "<group>";
-		};
-		B1678F9E159B374C003E653F /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B1678F9F159B374C003E653F /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		B1678FA4159B374C003E653F /* Debug */ = {
@@ -522,6 +310,7 @@
 				B1678FA8159B374C003E653F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B1678FA9159B374C003E653F /* Build configuration list for PBXNativeTarget "CalabashJSTests" */ = {
 			isa = XCConfigurationList;
@@ -530,6 +319,7 @@
 				B1678FAB159B374C003E653F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

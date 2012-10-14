@@ -50,11 +50,10 @@
     }
     NSArray *queryResult = [LPJSONUtils deserializeArray:output]; 
     
-//    CGPoint webViewPoint = [webView convertPoint:webView.bounds.origin toView:[UIApplication sharedApplication].keyWindow.rootViewController.view];
     UIWindow *window = [LPTouchUtils windowForView:webView];
-    CGPoint webViewPoint = [window convertPoint:webView.bounds.origin fromView:webView];
-//    CGPoint webViewPoint = [webView.window convertPoint:webView.frame.origin  ]
-       
+    UIWindow *frontWindow = [[UIApplication sharedApplication] keyWindow];
+
+    
     for (NSDictionary *d in queryResult) 
     {
         NSMutableDictionary *dres = [NSMutableDictionary dictionaryWithDictionary:d];
@@ -64,11 +63,13 @@
         CGFloat height =  [[dres valueForKeyPath:@"rect.height"] floatValue];
         
         
-        CGPoint center = CGPointMake(left+width/2.0, top+height/2.0);            
-        CGPoint screenCenter = CGPointMake(webViewPoint.x + center.x, webViewPoint.y + center.y);            
+        CGPoint center = CGPointMake(left+width/2.0, top+height/2.0);
+        CGPoint windowCenter = [window convertPoint:center fromView:webView];
+        CGPoint keyCenter = [frontWindow convertPoint:windowCenter fromWindow:window];
+
         if (!CGPointEqualToPoint(CGPointZero, center) && [webView pointInside:center withEvent:nil])
         {
-            NSDictionary *centerDict = (__bridge_transfer NSDictionary*)CGPointCreateDictionaryRepresentation(screenCenter);
+            NSDictionary *centerDict = (__bridge_transfer NSDictionary*)CGPointCreateDictionaryRepresentation(keyCenter);
             [dres setValue:centerDict forKey:@"center"];
             [dres setValue:webView forKey:@"webView"];
             [result addObject:dres];                
