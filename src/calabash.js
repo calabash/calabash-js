@@ -36,7 +36,7 @@
         {
             res.href = object.href;
         }
-        if (res.nodeName.toLowerCase() === 'input')
+        if (object.hasOwnProperty('value'))
         {
             res.value = object.value || '';
         }

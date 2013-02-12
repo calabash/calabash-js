@@ -1,49 +1,49 @@
 (function () {
-	function simulateKeyEvent(elem, character) {
-	    var ch = character.charCodeAt(0);
-	            
-	    var evt;
-	    evt = document.createEvent('KeyboardEvent');
-	    evt.initKeyboardEvent('keydown', true, true, window, 0, 0, 0, 0, 0, ch);
-	    elem.dispatchEvent(evt);
-	   
-	    evt = document.createEvent('KeyboardEvent');
-	    evt.initKeyboardEvent('keyup', true, true, window, 0, 0, 0, 0, 0, ch);
-	    elem.dispatchEvent(evt);
-	    evt = document.createEvent('KeyboardEvent');
-	    evt.initKeyboardEvent('keypress', true, true, window, 0, 0, 0, 0, 0, ch);
-	    elem.dispatchEvent(evt);
-	}
+        function simulateKeyEvent(elem, character) {
+            var ch = character.charCodeAt(0);
 
-	 
-	function enterTextIntoInputField(elem, text) {
-      elem.value = "";
-	    for (var i = 0; i < text.length; i++) {
-	        var ch = text.charAt(i);
-	        elem.value += ch;
-	        simulateKeyEvent(elem, ch);
-	    }
-	}
-	                            
+            var evt;
+            evt = document.createEvent('KeyboardEvent');
+            evt.initKeyboardEvent('keydown', true, true, window, 0, 0, 0, 0, 0, ch);
+            elem.dispatchEvent(evt);
 
-	function fireHTMLEvent(elem, eventName) {
-	    var evt = document.createEvent("HTMLEvents");
-	    evt.initEvent(eventName, true, true );
-	    return !elem.dispatchEvent(evt);
-	}
-
-	function selectInputField(elem) {
-	    elem.click();
-	    elem.focus();
-	}
+            evt = document.createEvent('KeyboardEvent');
+            evt.initKeyboardEvent('keyup', true, true, window, 0, 0, 0, 0, 0, ch);
+            elem.dispatchEvent(evt);
+            evt = document.createEvent('KeyboardEvent');
+            evt.initKeyboardEvent('keypress', true, true, window, 0, 0, 0, 0, 0, ch);
+            elem.dispatchEvent(evt);
+        }
 
 
-	function deselectInputField(elem) {
-	    fireHTMLEvent(elem, 'change');
-	    fireHTMLEvent(elem, 'blur');
-	}
-	
-	
+        function enterTextIntoInputField(elem, text) {
+            elem.value = "";
+            for (var i = 0; i < text.length; i++) {
+                var ch = text.charAt(i);
+                elem.value += ch;
+                simulateKeyEvent(elem, ch);
+            }
+        }
+
+
+        function fireHTMLEvent(elem, eventName) {
+            var evt = document.createEvent("HTMLEvents");
+            evt.initEvent(eventName, true, true );
+            return !elem.dispatchEvent(evt);
+        }
+
+        function selectInputField(elem) {
+            elem.click();
+            elem.focus();
+        }
+
+
+        function deselectInputField(elem) {
+            fireHTMLEvent(elem, 'change');
+            fireHTMLEvent(elem, 'blur');
+        }
+
+
     /** David Mark's isHostMethod function,
       * http://peter.michaux.ca/articles/feature-detection-state-of-the-art-browser-scripting
       * Modified to use strict equality
@@ -72,7 +72,7 @@
         }
         else if (object instanceof Node)//TODO: support for frames!
         {
-            res = {}
+            res = {};
             if (isHostMethod(object,'getBoundingClientRect'))
             {
                 res['rect'] = object.getBoundingClientRect();
@@ -81,6 +81,9 @@
             res.nodeName = object.nodeName;
             res.id = object.id || '';
             res['class'] = object.className || '';
+            if (object.hasOwnProperty('value')) {
+                res.value = object.value;
+            }
             res.html = object.outerHTML || '';
             res.nodeValue = object.nodeValue;
         }
@@ -102,26 +105,26 @@
         }
         return res;
     }
-    
+
     ///TODO: no support for now frames
     //idea would be map XPath across window.frames
     //must take care of visibility questions
 
     try
-    {   
-    	var exp = JSON.parse('%@')/* dynamic */,
-        	el,
-        	text = '%@',
-        	i,N;
- 
+    {
+        var exp = JSON.parse('%@')/* dynamic */,
+                el,
+                text = '%@',
+                i,N;
+
         el=document.elementFromPoint(exp.rect.left, exp.rect.top);
         if(exp.id){
-            el = document.getElementById(exp.id)
+            el = document.getElementById(exp.id);
         }
         if (/input/i.test(el.tagName))
         {
-        	selectInputField(el);
-        	enterTextIntoInputField(el, text);
+                selectInputField(el);
+                enterTextIntoInputField(el, text);
         }
         else
         {
