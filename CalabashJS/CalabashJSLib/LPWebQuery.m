@@ -73,7 +73,8 @@
             NSDictionary *centerDict = (__bridge_transfer NSDictionary*)CGPointCreateDictionaryRepresentation(finalCenter);
             [dres setValue:centerDict forKey:@"center"];
             [dres setValue:webView forKey:@"webView"];
-            [result addObject:dres];                
+            [result addObject:dres];
+            [centerDict release];
             if (DEBUG)
             {
                 NSLog(@"Adding object: %@",dres);
