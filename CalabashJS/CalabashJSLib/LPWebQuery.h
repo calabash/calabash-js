@@ -3,7 +3,7 @@
 //  CalabashJS
 //
 //  Created by Karl Krukow on 27/06/12.
-//  Copyright (c) 2012 LessPainful. All rights reserved.
+//  Copyright (c) 2012 Xamarin. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
