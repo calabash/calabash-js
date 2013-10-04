@@ -63,6 +63,8 @@
         CGFloat height =  [[dres valueForKeyPath:@"rect.height"] floatValue];
         
         
+        
+        
         CGPoint center = CGPointMake(left+width/2.0, top+height/2.0);
         CGPoint windowCenter = [window convertPoint:center fromView:webView];
         CGPoint keyCenter = [frontWindow convertPoint:windowCenter fromWindow:window];
@@ -73,6 +75,10 @@
             NSDictionary *centerDict = (__bridge_transfer NSDictionary*)CGPointCreateDictionaryRepresentation(finalCenter);
             [dres setValue:centerDict forKey:@"center"];
             [dres setValue:webView forKey:@"webView"];
+            
+            [dres setValue:[NSNumber numberWithFloat:finalCenter.x] forKeyPath:@"rect.center_x"];
+            [dres setValue:[NSNumber numberWithFloat:finalCenter.y] forKeyPath:@"rect.center_y"];
+            
             [result addObject:dres];
             [centerDict release];
             if (DEBUG)
