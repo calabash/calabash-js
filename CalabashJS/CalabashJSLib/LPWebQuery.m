@@ -16,6 +16,7 @@
 +(NSArray*)evaluateQuery:(NSString *)query 
                   ofType:(LPWebQueryType)type 
                inWebView:(UIWebView *)webView
+        includeInvisible:(BOOL)includeInvisible
 {
     NSString *jsString = nil;
     switch (type) 
@@ -70,9 +71,9 @@
         CGPoint keyCenter = [frontWindow convertPoint:windowCenter fromWindow:window];
         CGPoint finalCenter = [LPTouchUtils translateToScreenCoords:keyCenter];
 
-        if (!CGPointEqualToPoint(CGPointZero, center) && [webView pointInside:center withEvent:nil])
+        if (includeInvisible || (!CGPointEqualToPoint(CGPointZero, center) && [webView pointInside:center withEvent:nil]))
         {
-            NSDictionary *centerDict = (__bridge_transfer NSDictionary*)CGPointCreateDictionaryRepresentation(finalCenter);
+            NSDictionary *centerDict = (NSDictionary*)CGPointCreateDictionaryRepresentation(finalCenter);
             [dres setValue:centerDict forKey:@"center"];
             [dres setValue:webView forKey:@"webView"];
             
