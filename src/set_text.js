@@ -117,7 +117,7 @@
                 text = '%@',
                 i,N;
 
-        el=document.elementFromPoint(exp.rect.left, exp.rect.top);
+        el=document.elementFromPoint(exp.rect.left + exp.rect.width / 2, exp.rect.top + exp.rect.height / 2);
         if(exp.id){
             el = document.getElementById(exp.id);
         }
