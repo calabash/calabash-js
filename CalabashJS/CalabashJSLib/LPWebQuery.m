@@ -49,13 +49,16 @@
     {
          NSLog(@"Result: %@",output);
     }
+
     NSArray *queryResult = [LPJSONUtils deserializeArray:output]; 
     
     UIWindow *window = [LPTouchUtils windowForView:webView];
     UIWindow *frontWindow = [[UIApplication sharedApplication] keyWindow];
 
+    CGPoint webViewPageOffset = [self adjustOffsetForWebViewScrollPosition: webView];
+
     
-    for (NSDictionary *d in queryResult) 
+    for (NSDictionary *d in queryResult)
     {
         NSMutableDictionary *dres = [NSMutableDictionary dictionaryWithDictionary:d];
         CGFloat left = [[dres valueForKeyPath:@"rect.left"] floatValue];
@@ -66,7 +69,7 @@
         
         
         
-        CGPoint center = CGPointMake(left+width/2.0, top+height/2.0);
+        CGPoint center = CGPointMake(webViewPageOffset.x + left+width/2.0, webViewPageOffset.y + top+height/2.0);
         CGPoint windowCenter = [window convertPoint:center fromView:webView];
         CGPoint keyCenter = [frontWindow convertPoint:windowCenter fromWindow:window];
         CGPoint finalCenter = [LPTouchUtils translateToScreenCoords:keyCenter];
@@ -90,6 +93,19 @@
         }
     }
     return result;
+}
+
++(CGPoint)adjustOffsetForWebViewScrollPosition:(UIWebView*) webView {
+    CGPoint webViewPageOffset = CGPointMake(0, 0);
+    if ([webView respondsToSelector:@selector(scrollView)]) {
+        id scrollView = [webView performSelector:@selector(scrollView) withObject:nil];
+        if ([scrollView respondsToSelector:@selector(contentOffset)]) {
+            CGPoint scrollViewOffset = [scrollView contentOffset];
+            NSString *pageOffsetStr = [webView stringByEvaluatingJavaScriptFromString:@"window.pageYOffset"];
+            webViewPageOffset = CGPointMake(0, [pageOffsetStr floatValue] - scrollViewOffset.y);
+        }
+    }
+    return webViewPageOffset;
 }
 
 @end
