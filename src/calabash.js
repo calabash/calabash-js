@@ -10,7 +10,7 @@
              (!!(t==='object' && object[property])) ||
              t==='unknown';
     }
-    //http://www.w3.org/TR/DOM-Level-2-Core/core.html
+    /*http://www.w3.org/TR/DOM-Level-2-Core/core.html*/
     var NODE_TYPES = {
         /*ELEMENT_NODE                   : */ 1 : 'ELEMENT_NODE',
         /*ATTRIBUTE_NODE                 : */ 2: 'ATTRIBUTE_NODE',
@@ -75,14 +75,14 @@
 
 
         }
-        else if (object instanceof Node)//TODO: support for frames!
+        else if (object instanceof Node)
         {
             res = computeRectForNode(object);
         }
-        else if (object instanceof NodeList || //TODO: support for frames!
+        else if (object instanceof NodeList ||
                  (typeof object=='object' && object &&
                   typeof object.length === 'number' &&
-                  object.length > 0 //array like
+                  object.length > 0
                   && typeof object[0] !== 'undefined'))
         {
             res = [];
@@ -97,9 +97,6 @@
         }
         return res;
     }
-    ///TODO: no support for now frames
-    //idea would be map XPath across window.frames
-    //must take care of visibility questions
 
     var exp = '%@'/* dynamic */,
         queryType = '%@',
