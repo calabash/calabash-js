@@ -98,8 +98,40 @@
         return res;
     }
 
+    function applyMethods(object, arguments) {
+        var length = arguments.length;
+
+        for(var i = 0; i < length; i++) {
+            var argument = arguments[i];
+
+            if (typeof argument === 'string') {
+                argument = {method_name: argument, arguments: []}
+            }
+
+            var methodName = argument.method_name;
+            var methodArguments = argument.arguments;
+
+            if (typeof object[methodName] === 'undefined') {
+                var type = Object.prototype.toString.call(object);
+
+                object =
+                    {
+                        error: "No such method '" + methodName + "'",
+                        methodName: methodName,
+                        receiverString: object.constructor.name,
+                        receiverClass: type
+                    };
+
+                break;
+            } else {
+                object = object[methodName].apply(object, methodArguments);
+            }
+        }
+    }
+
     var exp = '%@'/* dynamic */,
-        queryType = '%@',
+        queryType = '%@' /* dynamic */,
+        arguments = '%@' /* dynamic */,
         nodes = null,
         res = [],
         i,N;
@@ -122,5 +154,14 @@
     {
        return JSON.stringify({error:'Exception while running query: '+exp, details:e.toString()})
     }
+
+    if (arguments !== '%@') {
+        var length = res.length;
+
+        for (var i = 0; i < length; i++) {
+            res[i] = applyMethods(res[i], arguments);
+        }
+    }
+
     return JSON.stringify(toJSON(res));
 })();
