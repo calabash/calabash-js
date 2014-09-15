@@ -61,15 +61,10 @@
     for (NSDictionary *d in queryResult)
     {
         NSMutableDictionary *dres = [NSMutableDictionary dictionaryWithDictionary:d];
-        CGFloat left = [[dres valueForKeyPath:@"rect.left"] floatValue];
-        CGFloat top = [[dres valueForKeyPath:@"rect.top"] floatValue];
-        CGFloat width =  [[dres valueForKeyPath:@"rect.width"] floatValue];
-        CGFloat height =  [[dres valueForKeyPath:@"rect.height"] floatValue];
-        
-        
-        
-        
-        CGPoint center = CGPointMake(webViewPageOffset.x + left+width/2.0, webViewPageOffset.y + top+height/2.0);
+        CGFloat center_x = [[dres valueForKeyPath:@"rect.center_x"] floatValue];
+        CGFloat center_y = [[dres valueForKeyPath:@"rect.center_y"] floatValue];
+      
+        CGPoint center = CGPointMake(webViewPageOffset.x + center_x, webViewPageOffset.y + center_y);
         CGPoint windowCenter = [window convertPoint:center fromView:webView];
         CGPoint keyCenter = [frontWindow convertPoint:windowCenter fromWindow:window];
         CGPoint finalCenter = [LPTouchUtils translateToScreenCoords:keyCenter];
