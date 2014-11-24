@@ -34,30 +34,21 @@
                         @"xpath"];
             break;
         default:
-            NSLog(@"Unknown Query type");
             return nil;
     }
 
     NSMutableArray *result = [NSMutableArray array];
 
-    if (DEBUG)
-    {
-        NSLog(@"JavaScript to eval:\n%@",jsString);        
-    }
     NSString *output = [webView stringByEvaluatingJavaScriptFromString:jsString];
-    if (DEBUG)
-    {
-         NSLog(@"Result: %@",output);
-    }
 
-    NSArray *queryResult = [LPJSONUtils deserializeArray:output]; 
-    
+
+    NSArray *queryResult = [LPJSONUtils deserializeArray:output];
+
     UIWindow *window = [LPTouchUtils windowForView:webView];
     UIWindow *frontWindow = [[UIApplication sharedApplication] keyWindow];
 
     CGPoint webViewPageOffset = [self adjustOffsetForWebViewScrollPosition: webView];
 
-    
     for (NSDictionary *d in queryResult)
     {
         NSMutableDictionary *dres = [NSMutableDictionary dictionaryWithDictionary:d];
@@ -80,11 +71,6 @@
             
             [result addObject:dres];
             [centerDict release];
-            if (DEBUG)
-            {
-                NSLog(@"Adding object: %@",dres);
-            }
-
         }
     }
     return result;
