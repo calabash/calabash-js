@@ -130,6 +130,7 @@
 
     NSMutableDictionary *augmentedChild = [NSMutableDictionary dictionaryWithDictionary:domChild];
     augmentedChild[@"rect"] = rectDict;
+    augmentedChild[@"hit-point"] = @{@"x": @(center_x), @"y": @(center_y)};
     [rectDict release];
 
     if (!CGPointEqualToPoint(CGPointZero, boundsCenterInScrollView) && [webView.scrollView pointInside:boundsCenterInScrollView withEvent:nil]) {
