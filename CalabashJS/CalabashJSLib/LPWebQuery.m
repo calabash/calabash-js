@@ -22,16 +22,16 @@
     switch (type) 
     {
         case LPWebQueryTypeCSS:
-            jsString = [NSString stringWithFormat:LP_QUERY_JS,query,@"css"];
+            jsString = [NSString stringWithFormat:LP_QUERY_JS,query,@"css", @""];
             break;
             
         case LPWebQueryTypeXPATH:
-            jsString = [NSString stringWithFormat:LP_QUERY_JS,query,@"xpath"];            
+            jsString = [NSString stringWithFormat:LP_QUERY_JS,query,@"xpath",@""];
             break;
         case LPWebQueryTypeFreeText:
             jsString = [NSString stringWithFormat:LP_QUERY_JS, 
                         [NSString stringWithFormat:@"//node()[contains(text(),\\\"%@\\\")]", query], 
-                        @"xpath"];
+                        @"xpath",@""];
             break;
         default:
             return nil;
@@ -52,8 +52,8 @@
     for (NSDictionary *d in queryResult)
     {
         NSMutableDictionary *dres = [NSMutableDictionary dictionaryWithDictionary:d];
-        CGFloat center_x = [[dres valueForKeyPath:@"rect.center_x"] floatValue];
-        CGFloat center_y = [[dres valueForKeyPath:@"rect.center_y"] floatValue];
+        CGFloat center_x = [[dres valueForKeyPath:@"rect.x"] floatValue];
+        CGFloat center_y = [[dres valueForKeyPath:@"rect.y"] floatValue];
       
         CGPoint center = CGPointMake(webViewPageOffset.x + center_x, webViewPageOffset.y + center_y);
         CGPoint windowCenter = [window convertPoint:center fromView:webView];
@@ -68,12 +68,98 @@
             
             [dres setValue:[NSNumber numberWithFloat:finalCenter.x] forKeyPath:@"rect.center_x"];
             [dres setValue:[NSNumber numberWithFloat:finalCenter.y] forKeyPath:@"rect.center_y"];
-            
+            [dres setValue:[NSNumber numberWithFloat:finalCenter.x] forKeyPath:@"rect.x"];
+            [dres setValue:[NSNumber numberWithFloat:finalCenter.y] forKeyPath:@"rect.y"];
+
             [result addObject:dres];
             [centerDict release];
         }
     }
     return result;
+}
+
++(NSDictionary*)dumpViewsInWebView:(UIWebView *)webView {
+  NSString *jsString = [NSString stringWithFormat:LP_QUERY_JS,@"",@"dump", @""];
+
+  NSString *output = [webView stringByEvaluatingJavaScriptFromString:jsString];
+  NSDictionary *dumpResult = [LPJSONUtils deserializeDictionary:output];
+  NSMutableDictionary *finalResult = [NSMutableDictionary dictionaryWithDictionary:dumpResult];
+  return [self augmentDOMElementDump: dumpResult inWebView: webView transferToDictionary: finalResult];
+}
+
+
++(NSDictionary*)augmentDOMElementDump:(NSDictionary*)viewDump
+                            inWebView:(UIWebView*)webView
+                 transferToDictionary:(NSMutableDictionary*)result {
+
+  CGPoint webViewPageOffset = [self adjustOffsetForWebViewScrollPosition: webView];
+
+  NSMutableArray *children = [NSMutableArray arrayWithCapacity:8];
+
+  for (NSDictionary *domChild in viewDump[@"children"])
+  {
+    NSDictionary *rectAsDict = domChild[@"rect"];
+    CGRect domChildRect = CGRectMake([rectAsDict[@"left"] floatValue],
+                                       [rectAsDict[@"top"] floatValue],
+                                       [rectAsDict[@"width"] floatValue],
+                                       [rectAsDict[@"height"] floatValue]);
+
+    CGRect domChildBounds = CGRectMake(domChildRect.origin.x + webViewPageOffset.x,
+                                       domChildRect.origin.y + webViewPageOffset.y,
+                                       domChildRect.size.width,
+                                       domChildRect.size.height);
+
+
+    CGRect translatedRect = [LPTouchUtils translateRect:domChildBounds inView:webView.scrollView];
+
+    CGFloat center_x = translatedRect.origin.x + translatedRect.size.width/2.0f;
+    CGFloat center_y = translatedRect.origin.y + translatedRect.size.height/2.0f;
+
+    CGPoint contentOffset = [webView.scrollView contentOffset];
+    CGPoint boundsCenterInScrollView = CGPointMake(contentOffset.x + domChildBounds.origin.x + domChildBounds.size.width/2.0f,
+                                                   contentOffset.y + domChildBounds.origin.y + domChildBounds.size.height/2.0f);
+
+    NSMutableDictionary *rectDict = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                     @(center_x), @"center_x",
+                                     @(center_y), @"center_y",
+                                     @(translatedRect.origin.x), @"x",
+                                     @(translatedRect.origin.y), @"y",
+                                     @(translatedRect.size.width), @"width",
+                                     @(translatedRect.size.height), @"height",
+                                     nil];
+
+    NSMutableDictionary *augmentedChild = [NSMutableDictionary dictionaryWithDictionary:domChild];
+    augmentedChild[@"rect"] = rectDict;
+    [rectDict release];
+
+    if (!CGPointEqualToPoint(CGPointZero, boundsCenterInScrollView) && [webView.scrollView pointInside:boundsCenterInScrollView withEvent:nil]) {
+      [augmentedChild setValue:@(1) forKeyPath:@"visible"];
+
+      UIWindow *windowForView = [LPTouchUtils windowForView:webView];
+      CGPoint windowBounds = [windowForView convertPoint:boundsCenterInScrollView fromView:webView.scrollView];
+      UIView *hitView = [windowForView hitTest:windowBounds withEvent:nil];
+      if (![LPTouchUtils canFindView:webView asSubViewInView:hitView]) {
+        UIView *hitSuperView = hitView;
+
+        while (hitSuperView && hitSuperView != webView) {
+          hitSuperView = [hitSuperView superview];
+        }
+        if (hitSuperView != webView) {
+          [augmentedChild setValue:@(0) forKeyPath:@"visible"];
+        }
+      }
+    }
+    else {
+      [augmentedChild setValue:@(0) forKeyPath:@"visible"];
+    }
+
+    [self augmentDOMElementDump:domChild inWebView:webView transferToDictionary:augmentedChild];
+    [children addObject:augmentedChild];
+  }
+  result[@"children"] = children;
+  return result;
+
+
 }
 
 +(CGPoint)adjustOffsetForWebViewScrollPosition:(UIWebView*) webView {

@@ -18,16 +18,28 @@
         /*DOCUMENT_NODE                  : */ 9 : 'DOCUMENT_NODE'
     };
 
-    function computeRectForNode(object)
+    function boundingClientRect(object)
     {
-        var res = {}, boundingBox;
+        var rect = null,
+            jsonRect = null;
         if (isHostMethod(object,'getBoundingClientRect'))
         {
-           boundingBox = object.getBoundingClientRect();
-           res['rect'] = boundingBox;
-           res['rect'].center_x = boundingBox.left + Math.floor(boundingBox.width/2);
-           res['rect'].center_y = boundingBox.top + Math.floor(boundingBox.height/2);
+           rect = object.getBoundingClientRect(),
+           jsonRect = { left: rect.left,
+                        top: rect.top,
+                        width: rect.width,
+                        height: rect.height,
+                        x: rect.left + Math.floor(rect.width/2),
+                        y: rect.top + Math.floor(rect.height/2)
+                      };
         }
+        return jsonRect;
+    }
+
+    function computeRectForNode(object, fullDump)
+    {
+        var res = {};
+        res.rect = boundingClientRect(object);
         res.nodeType = NODE_TYPES[object.nodeType] || res.nodeType + ' (Unexpected)';
         res.nodeName = object.nodeName;
         res.id = object.id || '';
@@ -40,11 +52,11 @@
         {
             res.value = object.value || '';
         }
-        res.html = object.outerHTML || '';
-        res.textContent = object.textContent;
+        if (fullDump || object.nodeType == 3)
+            res.textContent = object.textContent;
         return res;
     }
-    function toJSON(object)
+    function toJSON(object, fullDump)
     {
         var res, i, N, spanEl, parentEl;
         if (typeof object==='undefined')
@@ -60,8 +72,9 @@
                 spanEl.style.display = "inline";
                 spanEl.innerHTML = object.textContent;
                 parentEl.replaceChild(spanEl, object);
-                res = computeRectForNode(spanEl);
+                res = computeRectForNode(spanEl, fullDump);
                 res.nodeType = NODE_TYPES[object.nodeType];
+                res.textContent = object.textContent;
                 delete res.nodeName;
                 delete res.id;
                 delete res['class'];
@@ -72,12 +85,10 @@
             {
                 res = object;
             }
-
-
         }
         else if (object instanceof Node)
         {
-            res = computeRectForNode(object);
+            res = computeRectForNode(object, fullDump);
         }
         else if (object instanceof NodeList ||
                  (typeof object=='object' && object &&
@@ -88,7 +99,7 @@
             res = [];
             for (i=0,N=object.length;i<N;i++)
             {
-                res[i] = toJSON(object[i]);
+                res[i] = toJSON(object[i], fullDump);
             }
         }
         else
@@ -99,10 +110,11 @@
     }
 
     function applyMethods(object, arguments) {
-        var length = arguments.length;
+        var length = arguments.length,
+            argument;
 
         for(var i = 0; i < length; i++) {
-            var argument = arguments[i];
+            argument = arguments[i];
 
             if (typeof argument === 'string') {
                 argument = {method_name: argument, arguments: []}
@@ -116,7 +128,7 @@
 
                 object =
                     {
-                        error: "No such method '" + methodName + "'",
+                        error: 'No such method: ' + methodName,
                         methodName: methodName,
                         receiverString: object.constructor.name,
                         receiverClass: type
@@ -129,6 +141,28 @@
         }
     }
 
+    function elementNode(node) {return node.nodeType == 1 || node.nodeType == 9;}
+
+    function dumpTree(currentNode, result) {
+        var i=0,
+            childNodes = currentNode.childNodes,
+            N = childNodes.length,
+            children=[],
+            childNode;
+        for (;i<N;i+=1)
+        {
+            childNode = childNodes[i];
+            if (childNode) {
+                children[i] = toJSON(childNode, false);
+                if (elementNode(childNode) && children[i]) {
+                    dumpTree(childNode, children[i]);
+                }
+            }
+        }
+        result.children = children;
+        return result;
+    }
+
     var exp = '%@'/* dynamic */,
         queryType = '%@' /* dynamic */,
         arguments = '%@' /* dynamic */,
@@ -137,7 +171,11 @@
         i,N;
     try
     {
-        if (queryType==='xpath')
+        if (queryType == 'dump')
+        {
+            return JSON.stringify(dumpTree(document,toJSON(document, false)));
+        }
+        else if (queryType==='xpath')
         {
             nodes = document.evaluate(exp, document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
             for (i=0,N=nodes.snapshotLength;i<N;i++)
@@ -155,7 +193,9 @@
        return JSON.stringify({error:'Exception while running query: '+exp, details:e.toString()})
     }
 
-    if (arguments !== '%@') {
+
+    var unescapedString = String.fromCharCode(37); + '@';
+    if (arguments !== unescapedString && arguments !== '') {
         var length = res.length;
 
         for (var i = 0; i < length; i++) {
@@ -163,5 +203,5 @@
         }
     }
 
-    return JSON.stringify(toJSON(res));
+    return JSON.stringify(toJSON(res, true));
 })();
