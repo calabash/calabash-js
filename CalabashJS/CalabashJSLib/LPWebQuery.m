@@ -84,6 +84,9 @@
   NSString *output = [webView stringByEvaluatingJavaScriptFromString:jsString];
   NSDictionary *dumpResult = [LPJSONUtils deserializeDictionary:output];
   NSMutableDictionary *finalResult = [NSMutableDictionary dictionaryWithDictionary:dumpResult];
+  if (!(finalResult[@"type"])) {
+    finalResult[@"type"] = @"dom";
+  }
   return [self augmentDOMElementDump: dumpResult inWebView: webView transferToDictionary: finalResult];
 }
 
@@ -131,6 +134,10 @@
     NSMutableDictionary *augmentedChild = [NSMutableDictionary dictionaryWithDictionary:domChild];
     augmentedChild[@"rect"] = rectDict;
     augmentedChild[@"hit-point"] = @{@"x": @(center_x), @"y": @(center_y)};
+    if (!(augmentedChild[@"type"])) {
+      augmentedChild[@"type"] = @"dom";
+    }
+
     [rectDict release];
 
     if (!CGPointEqualToPoint(CGPointZero, boundsCenterInScrollView) && [webView.scrollView pointInside:boundsCenterInScrollView withEvent:nil]) {
