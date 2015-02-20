@@ -1,3 +1,23 @@
-build/*.*
-.idea/*.*
-.idea/copyright
+# macos
+.DS_Store
+
+# emacs backup files
+(.*/)?\#[^/]*\#$
+
+# Xcode
+xcuserdata
+*.xccheckout
+*.moved-aside
+DerivedData
+*.hmap
+*.xcuserstate
+
+# products
+build
+
+# AppCode
+.idea
+
+# rbenv and rvm
+.ruby-version
+
