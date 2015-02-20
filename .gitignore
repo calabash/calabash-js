@@ -4,14 +4,6 @@
 # emacs backup files
 (.*/)?\#[^/]*\#$
 
-# Xcode
-xcuserdata
-*.xccheckout
-*.moved-aside
-DerivedData
-*.hmap
-*.xcuserstate
-
 # products
 build
 
