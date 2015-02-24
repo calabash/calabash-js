@@ -1,3 +1,15 @@
-build/*.*
-.idea/*.*
-.idea/copyright
+# macos
+.DS_Store
+
+# emacs backup files
+(.*/)?\#[^/]*\#$
+
+# products
+build
+
+# AppCode
+.idea
+
+# rbenv and rvm
+.ruby-version
+
