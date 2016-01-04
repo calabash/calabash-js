@@ -17,8 +17,6 @@
         /*TEXT_NODE                      : */ 3 : 'TEXT_NODE',
         /*DOCUMENT_NODE                  : */ 9 : 'DOCUMENT_NODE'
     };
- 
-    function returnTrue() { return true; }
 
     function boundingClientRect(object)
     {
@@ -170,7 +168,7 @@
         arguments = '%@' /* dynamic */,
         frameSelector='%@' /* dynamic */,
         queryFrame= frameSelector == '' ? document : document.querySelectorAll(frameSelector)[0].contentWindow.document,
-        queryWindow = frameSelector ==' ' ? window : document.querySelectorAll(frameSelector)[0].contentWindow,
+        queryWindow = frameSelector == '' ? window : document.querySelectorAll(frameSelector)[0].contentWindow,
         nodes = null,
         res = [],
         i,N;
